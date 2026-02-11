@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Heirloom Diary</title>
+</head>
+
+<body class="cover-body">
+
+<div class="cover">
+
+    <h1>Heirloom Diary</h1>
+    <p class="established">Est. 2026</p>
+
+    <div class="seal"></div>
+
+    <div class="strap">
+        <form method="POST" action="/unlock" class="metal-lock">
+
+            <input type="text"
+                name="code"
+                maxlength="4"
+                pattern="\d{4}"
+                inputmode="numeric"
+                class="real-input"
+                autofocus
+                required>
+
+            <div class="digit-display">
+                <span>0</span>
+                <span>0</span>
+                <span>0</span>
+                <span>0</span>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const input = document.querySelector(".real-input");
+    const digits = document.querySelectorAll(".digit-display span");
+
+    input.addEventListener("input", function() {
+
+        let value = input.value.replace(/\D/g, "");
+
+        for (let i = 0; i < 4; i++) {
+            digits[i].textContent = value[i] ? value[i] : "0";
+        }
+
+        if (value.length === 4) {
+            input.form.submit();
+        }
+    });
+
+});
+</script>
+</body>
+</html>

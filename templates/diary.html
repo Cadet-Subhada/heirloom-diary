@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Homemade+Apple&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Heirloom Diary</title>
+</head>
+<body>
+
+<div class="book">
+
+    <!-- LEFT PAGE (History) -->
+    <div class="page page-left">
+
+        <div class="book-header">
+            <h1>Heirloom Diary</h1>
+            <p class="sub-title">Ohana Chronicle</p>
+        </div>
+
+        <div class="months">
+            <a href="/diary">All</a>
+            <a href="/diary?month=1">Jan</a>
+            <a href="/diary?month=2">Feb</a>
+            <a href="/diary?month=3">Mar</a>
+            <a href="/diary?month=4">Apr</a>
+            <a href="/diary?month=5">May</a>
+            <a href="/diary?month=6">Jun</a>
+            <a href="/diary?month=7">Jul</a>
+            <a href="/diary?month=8">Aug</a>
+            <a href="/diary?month=9">Sep</a>
+            <a href="/diary?month=10">Oct</a>
+            <a href="/diary?month=11">Nov</a>
+            <a href="/diary?month=12">Dec</a>
+        </div>
+
+        <hr class="divider">
+
+        {% for entry in entries %}
+            <div class="entry">
+                <div class="date-title">{{ entry.date }}</div>
+                <p>{{ entry.content }}</p>
+                <small class="signature">— {{ entry.user.username }}</small>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- RIGHT PAGE (Today) -->
+    <div class="page page-right">
+
+        <div class="today-header">
+            <h1>{{ today }}</h1>
+            <p class="welcome">Welcome, {{ username }}</p>
+        </div>
+
+        <form method="POST" class="entry-form">
+            <textarea name="content" placeholder="Write today's memory..." required></textarea>
+            <button type="submit">Add to Chronicle</button>
+        </form>
+
+        <div class="right-footer">
+            <a href="/logout" class="close-link">Close Book</a>
+            <div class="flip-btn" onclick="flipBook()">Flip Page</div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function flipBook() {
+    document.querySelector('.book').classList.toggle('flipped');
+}
+</script>
+
+</body>
+</html>

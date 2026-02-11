@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Heirloom Diary</title>
+</head>
+
+<body class="auth-body">
+
+    <div class="auth-card">
+        <h1 class="auth-title">Heirloom Diary</h1>
+        <p class="auth-subtitle">Enter the Book</p>
+
+        <form method="POST" class="auth-form">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <p>New here? <a href="/register">Create an account</a></p>
+    </div>
+
+</body>
+</html>
