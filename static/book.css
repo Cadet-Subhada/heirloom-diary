@@ -2,13 +2,23 @@
 /* GLOBAL BACKGROUND         */
 /* ========================= */
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
-    background: radial-gradient(circle at center, #3a2618 0%, #24160f 100%);
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background:
+        radial-gradient(circle at center,
+        #3d281a 0%,
+        #23150e 100%);
+
     font-family: 'Cormorant Garamond', serif;
 }
 
@@ -20,9 +30,15 @@ body {
 .book {
     width: 1100px;
     height: 650px;
+
     display: flex;
     position: relative;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+
+    border-radius: 6px;
+    overflow: hidden;
+
+    box-shadow:
+        0 40px 80px rgba(0,0,0,0.65);
 }
 
 
@@ -37,30 +53,40 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 18px;
-    background: linear-gradient(to right, #bfae93, #a89175, #bfae93);
-    box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
+    width: 28px;
+
+    background:
+        linear-gradient(to right,
+        #83755d 0%,
+        #645541 40%,
+        #524535 50%,
+        #75634a 60%,
+        #83755d 100%);
+
+    box-shadow:
+        inset 0 0 20px rgba(0,0,0,0.45);
+
     z-index: 5;
 }
 
-
 /* ========================= */
-/* PAGES                     */
+/* PAGES  SAME AS SPINE TONE */
 /* ========================= */
 
 .page {
     width: 50%;
     padding: 60px;
+
     position: relative;
     display: flex;
     flex-direction: column;
 
-    background:
-        radial-gradient(circle at top left, rgba(0,0,0,0.04), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(0,0,0,0.05), transparent 60%),
-        linear-gradient(145deg, #f3eadb, #e4d6bf);
+    background: #b29c7c;
 
-    box-shadow: inset 0 0 60px rgba(0,0,0,0.08);
+    box-shadow:
+        inset 0 0 60px rgba(0,0,0,0.15);
+
+    border-radius: 2px;
 }
 
 .page::before {
@@ -70,34 +96,37 @@ body {
     left: 25px;
     right: 25px;
     bottom: 25px;
-    border: 1.5px solid rgba(90,70,50,0.25);
+
+    border: 1px solid rgba(60,40,20,0.25);
     pointer-events: none;
 }
 
-.page-left {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+.page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
 
+    background:
+        radial-gradient(circle at center,
+        transparent 65%,
+        rgba(0,0,0,0.15) 100%);
+}
+
+.page-left {
+    overflow: hidden;
     box-shadow:
-        inset -35px 0 40px rgba(0,0,0,0.15),
-        inset 0 0 60px rgba(0,0,0,0.08);
+        inset -85px 0 80px rgba(0,0,0,0.35),
+        inset 0 0 40px rgba(0,0,0,0.12);
 }
 
 .page-right {
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     box-shadow:
-        inset 35px 0 40px rgba(0,0,0,0.15),
-        inset 0 0 60px rgba(0,0,0,0.08);
-}
+        inset 85px 0 80px rgba(0,0,0,0.35),
+        inset 0 0 40px rgba(0,0,0,0.12);
 
-.welcome,
-.page-right p,
-.page-left p,
-.signature {
-    font-family: 'Homemade Apple', cursive;
+    position: relative;
 }
 
 /* ========================= */
@@ -106,27 +135,22 @@ body {
 
 .book-header h1 {
     text-align: center;
-    font-family: 'Homemade Apple', cursive;
-    font-size: 28px;
-    color: #2b1a0f;
-    margin-bottom: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: #2e1f14;
+    margin-bottom: 10px;
 }
 
-/* ========================= */
-/* DATE TITLES               */
-/* ========================= */
-
-.date-title,
-.today-header h1 {
-    font-family: 'Homemade Apple', cursive;
+.date-title {
     font-size: 18px;
-    color: #2b1a0f;
-    margin-bottom: 15px;
+    color: #3a2b1c;
+    margin-bottom: 20px;
 }
 
 
 /* ========================= */
-/* ENTRY TEXT                */
+/* ENTRY AREA                */
 /* ========================= */
 
 .entry {
@@ -137,138 +161,66 @@ body {
 }
 
 .entry-block {
-    margin-bottom: 30px;
+    margin-bottom: 28px;
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 18px;
 }
+
+/* ONLY ENTRIES HANDWRITTEN */
 
 .entry p {
     font-family: 'Homemade Apple', cursive;
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.9;
-    color: #2b1a0f;
+    color: #2e1f14;
     margin: 0;
 
     word-wrap: break-word;
     overflow-wrap: break-word;
-    word-break: break-word;
 }
+
+/* ONLY SIGNATURE HANDWRITTEN */
 
 .signature {
     display: block;
-    margin-top: 8px;
+    margin-top: 6px;
+    font-family: 'Homemade Apple', cursive;
     font-size: 14px;
-    color: #5a4633;
-    opacity: 0.8;
+    color: #4a3828;
+    opacity: 0.85;
 }
 
-/* Scratch Style */
+
+/* ========================= */
+/* SCRATCH BACK TO ORIGINAL  */
+/* ========================= */
 
 .scratched {
     text-decoration: line-through;
     opacity: 0.5;
-    color: #5a4633;
+    color: #4a3828;
 }
+
+
+/* ========================= */
+/* SCRATCH BUTTON            */
+/* ========================= */
 
 .scratch-btn {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-family: 'Homemade Apple', cursive;
+
+    font-family: 'Cormorant Garamond', serif;
     font-size: 13px;
+
     text-decoration: none;
-    color: #7a5d2f;
+    color: #5a4328;
     opacity: 0.7;
 }
 
 .scratch-btn:hover {
     opacity: 1;
-}
-
-/* ========================= */
-/* WRITE FORM                */
-/* ========================= */
-
-.entry-form {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.entry-form textarea {
-    flex-grow: 1;
-    min-height: 180px;
-    border: none;
-    background: transparent;
-    font-family: 'Homemade Apple', cursive;
-    font-size: 17px;
-    color: #2b1a0f;
-    outline: none;
-    resize: none;
-    caret-color: #2b1a0f;
-    overflow-y: auto;
-}
-
-.entry-form textarea::placeholder {
-    opacity: 0.5;
-    font-style: italic;
-}
-
-
-/* ========================= */
-/* SCROLLBAR STYLING         */
-/* ========================= */
-
-/* Chrome */
-.page-left::-webkit-scrollbar,
-.entry-form textarea::-webkit-scrollbar {
-    width: 8px;
-}
-
-.page-left::-webkit-scrollbar-track,
-.entry-form textarea::-webkit-scrollbar-track {
-    background: rgba(90,70,50,0.08);
-}
-
-.page-left::-webkit-scrollbar-thumb,
-.entry-form textarea::-webkit-scrollbar-thumb {
-    background: rgba(90,70,50,0.35);
-    border-radius: 10px;
-}
-
-.page-left::-webkit-scrollbar-thumb:hover,
-.entry-form textarea::-webkit-scrollbar-thumb:hover {
-    background: rgba(90,70,50,0.55);
-}
-
-/* Firefox */
-.page-left,
-.entry-form textarea {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(90,70,50,0.35) rgba(90,70,50,0.08);
-}
-
-
-/* ========================= */
-/* BUTTON                    */
-/* ========================= */
-
-.entry-form button {
-    align-self: center;
-    width: 200px;
-    margin-top: 20px;
-    padding: 10px;
-    background: linear-gradient(145deg, #7a5d2f, #5b4421);
-    color: #e8d8b0;
-    border: 1px solid #3f2f14;
-    box-shadow:
-        inset 0 2px 4px rgba(255,220,150,0.3),
-        0 6px 12px rgba(0,0,0,0.4);
-    transition: 0.3s ease;
-}
-
-.entry-form button:hover {
-    background: linear-gradient(145deg, #b68a2f, #7c5e1f);
 }
 
 
@@ -283,16 +235,162 @@ body {
 }
 
 .page-btn {
-    font-family: 'Homemade Apple', cursive;
+    font-family: 'Cormorant Garamond', serif;
     text-decoration: none;
-    color: #2b1a0f;
+    color: #2e1f14;
     padding: 6px 12px;
     transition: 0.3s ease;
 }
 
 .page-btn:hover {
-    transform: perspective(600px) rotateY(12deg);
     opacity: 0.7;
+}
+
+
+/* ========================= */
+/* RIGHT PAGE HEADER         */
+/* ========================= */
+
+.today-header {
+    margin-bottom: 20px;
+}
+
+.welcome {
+    font-family: 'Homemade Apple', cursive;
+    font-size: 22px;
+    color: #2e1f14;
+}
+
+
+/* ========================= */
+/* CALENDAR                  */
+/* ========================= */
+
+.calendar-form {
+    position: absolute;
+    top: 45px;
+    right: 60px;
+}
+
+.calendar-input {
+    width: 150px;
+    padding: 2px 12px;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(60,40,20,0.4);
+
+    color: #2e1f14;
+    cursor: pointer;
+}
+
+.calendar-input:focus {
+    outline: none;
+}
+
+.calendar-input::-webkit-calendar-picker-indicator {
+    filter: sepia(90%) saturate(120%) brightness(60%);
+    cursor: pointer;
+}
+
+
+/* ========================= */
+/* WRITE FORM                */
+/* ========================= */
+
+.entry-form {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.entry-form textarea {
+    flex-grow: 1;
+    border: none;
+    background: transparent;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    line-height: 1.8;
+
+    color: #2e1f14;
+    outline: none;
+    resize: none;
+    caret-color: #2e1f14;
+
+    overflow-y: auto;
+}
+
+.entry-form textarea::placeholder {
+    font-family: 'Homemade Apple', cursive;
+    opacity: 0.6;
+}
+
+/* ========================= */
+/* SCROLLBAR                 */
+/* ========================= */
+
+.entry::-webkit-scrollbar,
+.entry-form textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.entry::-webkit-scrollbar-track,
+.entry-form textarea::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.15);
+}
+
+.entry::-webkit-scrollbar-thumb,
+.entry-form textarea::-webkit-scrollbar-thumb {
+    background: #8f7a5f;
+    border-radius: 10px;
+}
+
+.entry::-webkit-scrollbar-thumb:hover,
+.entry-form textarea::-webkit-scrollbar-thumb:hover {
+    background: #7a684f;
+}
+
+.entry,
+.entry-form textarea {
+    scrollbar-width: thin;
+    scrollbar-color: #8f7a5f rgba(0,0,0,0.15);
+}
+
+/* ========================= */
+/* BUTTON                    */
+/* ========================= */
+
+.entry-form button {
+    align-self: center;
+    width: 220px;
+    margin-top: 25px;
+    padding: 12px 0;
+
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 1px;
+
+    background:
+        linear-gradient(#9b7a3d, #6f5425);
+
+    color: #f4e6c8;
+
+    border: 1px solid #5a421a;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.5),
+        inset 0 1px 3px rgba(255,230,180,0.4);
+
+    transition: all 0.3s ease;
+}
+
+.entry-form button:hover {
+    transform: translateY(-3px);
+    background:
+        linear-gradient(#b68a2f, #7c5e1f);
 }
 
 
@@ -307,9 +405,9 @@ body {
 
 .close-link {
     text-decoration: none;
-    font-family: 'Homemade Apple', cursive;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 14px;
-    color: #3a2a18;
+    color: #2e1f14;
     opacity: 0.8;
 }
 
@@ -317,39 +415,6 @@ body {
     opacity: 1;
 }
 
-/* ========================= */
-/* CALENDAR BUTTON           */
-/* ========================= */
-
-.page-right {
-    position: relative;
-}
-
-.calendar-form {
-    position: absolute;
-    top: 45px;
-    right: 60px;
-}
-
-.calendar-input {
-    width: 150px;
-    padding: 2px 15px 2px 15px;
-
-    font-family: 'Homemade Apple', cursive;
-    font-size: 22px;
-
-    background: transparent;
-    border: none;
-
-    color: #2b1a0f;
-    cursor: pointer;
-}
-
-/* Earthy calendar icon */
-.calendar-input::-webkit-calendar-picker-indicator {
-    filter: sepia(90%) saturate(120%) brightness(60%);
-    cursor: pointer;
-}
 
 /* ========================= */
 /* RESPONSIVE                */
@@ -370,5 +435,9 @@ body {
     .page {
         width: 100%;
         padding: 40px;
+    }
+
+    .book::before {
+        display: none;
     }
 }
