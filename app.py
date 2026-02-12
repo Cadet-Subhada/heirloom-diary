@@ -146,14 +146,12 @@ def diary():
     next_date = selected_date + timedelta(days=1) if selected_date < max_date else None
 
     formatted_date = selected_date.strftime("%d-%m-%Y, %A")
-    formatted_day = selected_date.strftime("%A")
 
     return render_template(
         'diary.html',
         entries=entries,
         selected_date=selected_date,
         formatted_date=formatted_date,
-        formatted_day=formatted_day,
         previous_date=previous_date,
         next_date=next_date,
         today=date.today(),
