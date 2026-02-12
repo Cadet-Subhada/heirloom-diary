@@ -16,7 +16,7 @@
 
         <div class="book-header">
             <h1>Heirloom Diary</h1>
-            <p class="sub-title">Ohana</p>
+            <p class="sub-title">2026</p>
         </div>
 
         <div class="entry">
@@ -51,11 +51,13 @@
         <!-- Page Flip Navigation -->
         <div class="page-nav">
 
-            <a href="{{ url_for('diary', date=previous_date) }}" class="page-btn">
-                ← Previous Day
-            </a>
+            {% if previous_date %}
+                <a href="{{ url_for('diary', date=previous_date) }}" class="page-btn">
+                    ← Previous Day
+                </a>
+            {% endif %}
 
-            {% if selected_date < today %}
+            {% if next_date %}
                 <a href="{{ url_for('diary', date=next_date) }}" class="page-btn">
                     Next Day →
                 </a>
@@ -73,20 +75,18 @@
             <div class="date-row">
 
                 <h1 class="date-title">
-                    {{ formatted_date }}
+                    {{ formatted_day }}
                 </h1>
 
                 <form method="GET" action="{{ url_for('diary') }}" class="calendar-form">
 
                     <input type="date"
                         name="date"
-                        class="calendar-icon"
+                        class="calendar-input"
                         min="2026-01-01"
                         max="2026-12-31"
                         value="{{ selected_date }}"
                         onchange="this.form.submit()">
-
-                    </button>
 
                 </form>
 

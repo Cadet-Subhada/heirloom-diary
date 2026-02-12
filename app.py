@@ -139,16 +139,21 @@ def diary():
         date=selected_date
     ).order_by(Entry.id.asc()).all()
 
-    previous_date = selected_date - timedelta(days=1)
-    next_date = selected_date + timedelta(days=1)
+    min_date = date(2026, 1, 1)
+    max_date = date(2026, 12, 31)
+
+    previous_date = selected_date - timedelta(days=1) if selected_date > min_date else None
+    next_date = selected_date + timedelta(days=1) if selected_date < max_date else None
 
     formatted_date = selected_date.strftime("%d-%m-%Y, %A")
+    formatted_day = selected_date.strftime("%A")
 
     return render_template(
         'diary.html',
         entries=entries,
         selected_date=selected_date,
         formatted_date=formatted_date,
+        formatted_day=formatted_day,
         previous_date=previous_date,
         next_date=next_date,
         today=date.today(),

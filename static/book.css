@@ -93,6 +93,12 @@ body {
         inset 0 0 60px rgba(0,0,0,0.08);
 }
 
+.welcome,
+.page-right p,
+.page-left p,
+.signature {
+    font-family: 'Homemade Apple', cursive;
+}
 
 /* ========================= */
 /* HEADER                    */
@@ -322,42 +328,37 @@ body {
 }
 
 /* ========================= */
-/* CALENDAR ICON TOKEN       */
+/* CALENDAR BUTTON           */
 /* ========================= */
 
-.date-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+.page-right {
+    position: relative;
 }
 
-/* calendar wrapper */
 .calendar-form {
-    margin-left: auto;
+    position: absolute;
+    top: 45px;
+    right: 60px;
 }
 
-/* actual icon */
-.calendar-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
+.calendar-input {
+    width: 150px;
+    padding: 2px 15px 2px 15px;
 
-    background: linear-gradient(145deg, #d8cbb3, #c4b49a);
-    border: 1px solid #a28e74;
+    font-family: 'Homemade Apple', cursive;
+    font-size: 22px;
 
+    background: transparent;
+    border: none;
+
+    color: #2b1a0f;
     cursor: pointer;
-    color: transparent;
-
-    box-shadow:
-        inset 0 2px 4px rgba(255,255,255,0.4),
-        0 3px 6px rgba(0,0,0,0.25);
-
-    transition: 0.2s ease;
 }
 
-.calendar-icon:hover {
-    transform: translateY(-2px);
+/* Earthy calendar icon */
+.calendar-input::-webkit-calendar-picker-indicator {
+    filter: sepia(90%) saturate(120%) brightness(60%);
+    cursor: pointer;
 }
 
 /* ========================= */
