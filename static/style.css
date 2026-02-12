@@ -165,7 +165,7 @@ button:hover {
             rgba(255, 220, 150, 0.28),
             transparent 40%),
         url("https://www.transparenttextures.com/patterns/arabesque.png"),
-        linear-gradient(145deg, #4a2c1b, #26160f);
+        linear-gradient(145deg, #2b160c, #1a0f08);
 
     background-blend-mode: overlay;
 
@@ -188,7 +188,7 @@ button:hover {
     left: 20px;
     right: 20px;
     bottom: 20px;
-    border: 3px solid rgba(232,201,122,0.4);
+    border: 3px solid rgba(232,201,122,0.2);
     border-radius: 14px;
     box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
 }
@@ -331,9 +331,9 @@ button:hover {
 
     background: linear-gradient(
         to bottom,
-        #ffe9a6,
-        #d6b45a,
-        #b68a2f
+        #968b6a,
+        #6f5e2e,
+        #584216
     );
 
     box-shadow:
@@ -360,7 +360,7 @@ button:hover {
     width: 26px;           /* smaller */
     height: 34px;          /* shorter */
 
-    background: linear-gradient(145deg, #f3d788, #c79a3b);
+    background: linear-gradient(145deg, #85764c, #6f5721);
     border-radius: 4px;
 
     display: flex;
