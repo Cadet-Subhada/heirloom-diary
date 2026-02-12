@@ -1,0 +1,168 @@
+.auth-body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at center, #2d1c12 0%, #1a0f0a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    width: 420px;
+    padding: 60px 60px;
+
+    background:
+        url("https://www.transparenttextures.com/patterns/arabesque.png"),
+        radial-gradient(circle at 30% 20%, rgba(255,220,150,0.06), transparent 50%),
+        linear-gradient(145deg, #2b160c, #1a0f08);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 40px 90px rgba(0,0,0,0.8),
+        inset 0 0 60px rgba(0,0,0,0.8);
+
+    position: relative;
+    text-align: center;
+    color: #e8c97a;
+}
+
+.auth-card::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+
+    border: 2px solid rgba(232,201,122,0.08);
+    border-radius: 14px;
+    pointer-events: none;
+}
+
+.auth-card a {
+    background: linear-gradient(#ffe9a6, #b68a2f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.auth-card a:hover {
+    text-shadow: 0 0 6px rgba(255,220,150,0.8);
+}
+
+.auth-title {
+    font-size: 46px;
+
+    background: linear-gradient(#ffe9a6, #b68a2f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 1px 2px rgba(0,0,0,0.7);
+}
+
+.auth-subtitle {
+    font-size: 18px;
+    letter-spacing: 6px;
+    margin-bottom: 40px;
+
+    background: linear-gradient(#ffe9a6, #b68a2f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+}
+
+.auth-form {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.auth-form input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px;
+    margin-bottom: 20px;
+
+    background: linear-gradient(145deg, #cbb792, #b79f74);
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 8px;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: #3b2a10;
+
+    box-shadow:
+        inset 0 2px 6px rgba(0,0,0,0.35);
+}
+
+.auth-form input::placeholder {
+    color: #5f4a22;
+}
+
+.auth-form input:focus {
+    outline: none;
+    box-shadow:
+        inset 0 2px 6px rgba(0,0,0,0.2),
+        0 0 8px rgba(182,138,47,0.6);
+}
+
+.auth-footer {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #c9a24d;
+}
+
+.auth-footer a {
+    background: linear-gradient(#ffe9a6, #b68a2f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    opacity: 0.8;
+}
+
+.auth-form button {
+    background: linear-gradient(145deg, #4d3d1a, #6f5520);
+    border: 1px solid #382910;
+
+    color: #f3d788;
+
+    padding: 14px;
+    border-radius: 8px;
+
+    box-shadow:
+        inset 0 2px 4px rgba(255,220,150,0.3),
+        0 4px 10px rgba(0,0,0,0.6);
+
+    transition: 0.3s ease;
+}
+
+.auth-form button:hover {
+    background: linear-gradient(145deg, #b68a2f, #7c5e1f);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 500px) {
+    .auth-card {
+        width: 90%;
+        padding: 40px 25px;
+    }
+
+    .auth-title {
+        font-size: 34px;
+    }
+
+    .auth-subtitle {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+}
