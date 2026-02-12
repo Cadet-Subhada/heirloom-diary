@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">    
     <title>Heirloom Diary | Register</title>
 </head>
 
 <body class="auth-body">
 
-<div class="auth-card">
+    <div class="auth-card">
 
-    <h1 class="auth-title">Heirloom Diary</h1>
-    <p class="auth-subtitle">Create Your Account</p>
+        <h1 class="auth-title">Heirloom Diary</h1>
+        <p class="auth-subtitle">2026</p>
 
-    <form method="POST" class="auth-form">
-        <input type="text" name="username" placeholder="Choose a username" required>
-        <input type="password" name="password" placeholder="Choose a password" required>
-        <button type="submit">Begin Your Chapter</button>
-    </form>
+        <form method="POST" class="auth-form">
+            <input type="text" name="username" placeholder="Inscribe your name" required>
+            <input type="password" name="password" placeholder="Set your secret phrase" required>
+            <button type="submit">Enter the Covenant</button>
+        </form>
 
-    <p class="auth-footer">
-        Already have an account? <a href="/login">Enter the Book</a>
-    </p>
+        <p class="auth-footer">
+            Already a member? <a href="/login">Access the Archives</a>
+        </p>
 
-</div>
-
+    </div>
+    
 </body>
 </html>
