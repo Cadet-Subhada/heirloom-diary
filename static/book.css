@@ -121,6 +121,8 @@ body {
 }
 
 .page-left {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     box-shadow:
         inset -85px 0 80px rgba(0,0,0,0.35),
@@ -147,24 +149,26 @@ body {
     letter-spacing: 1px;
     color: #2e1f14;
     margin-bottom: 10px;
+    margin-top: -15px;
 }
 
 .date-title {
-    font-size: 18px;
-    color: #3a2b1c;
-    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #2a1b12;
+    margin-bottom: 25px;
 }
-
 
 /* ========================= */
 /* ENTRY AREA                */
 /* ========================= */
 
 .entry {
-    flex-grow: 1;
+    flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 10px;
+    margin-top: 10px;
 }
 
 .entry-block {
@@ -176,12 +180,16 @@ body {
 /* ONLY ENTRIES HANDWRITTEN */
 
 .entry p {
-    font-family: 'Homemade Apple', cursive;
+    font-family:'Nothing You Could Do', cursive;
     font-size: 17px;
     line-height: 1.9;
-    color: #2e1f14;
+    color: #1c355e;
     margin: 0;
-    text-shadow: 0 0 1px rgba(0,0,0,0.2);
+    text-shadow:
+        0 0 1px rgba(28,53,94,0.6),
+        0 0 2px rgba(28,53,94,0.3);
+    opacity: 0.95;
+    filter: contrast(0.98);
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -191,12 +199,11 @@ body {
 .signature {
     display: block;
     margin-top: 6px;
-    font-family: 'Homemade Apple', cursive;
+    font-family:'Nothing You Could Do', cursive;
     font-size: 14px;
-    color: #4a3828;
+    color: #1c355e;
     opacity: 0.85;
 }
-
 
 /* ========================= */
 /* SCRATCH BACK TO ORIGINAL  */
@@ -236,53 +243,65 @@ body {
 /* ========================= */
 
 .page-nav {
-    margin-top: 30px;
+    margin-top: auto;
     display: flex;
     justify-content: space-between;
 }
 
-.page-btn {
+.page-btn,
+.entry-form button {
+
     font-family: 'Cormorant Garamond', serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    margin-top: 50px;
+
+    padding: 10px 22px;
+    border: none;
+    background: transparent;
+
+    /* Deep mahogany tone */
+    background: linear-gradient(
+        to bottom,
+        #411b13,
+        #1e0c08
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    /* Carved depth only */
+    text-shadow:
+        0 1px 0 rgba(255,200,160,0.35), 
+        0 2px 3px rgba(0,0,0,0.45);
+
+    transition: 0.2s ease;
+}
+
+.page-btn:hover,
+.entry-form button:hover {
+    text-shadow:
+        0 1px 0 rgba(120, 89, 65, 0.35),
+        0 2px 4px rgba(0,0,0,0.6);
+}
+
+.page-btn {
     text-decoration: none;
-    padding: 8px 18px;
-
-    background: linear-gradient(#9b7a3d, #6f5425);
-    color: #f4e6c8;
-
-    border: 1px solid #5a421a;
-    border-radius: 6px;
-
-    box-shadow:
-        0 6px 15px rgba(0,0,0,0.4),
-        inset 0 1px 2px rgba(255,230,180,0.3);
-
-    transition: all 0.3s ease;
 }
 
 .page-btn:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(#b68a2f, #7c5e1f);
+    text-decoration: none;
 }
-
-.page-btn:hover {
-    opacity: 0.7;
-}
-
 
 /* ========================= */
 /* RIGHT PAGE HEADER         */
 /* ========================= */
 
 .today-header {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
-
-.welcome {
-    font-family: 'Homemade Apple', cursive;
-    font-size: 22px;
-    color: #2e1f14;
-}
-
 
 /* ========================= */
 /* CALENDAR                  */
@@ -299,13 +318,14 @@ body {
     padding: 2px 12px;
 
     font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: 600;
 
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(60,40,20,0.4);
 
-    color: #2e1f14;
+    color: #2a1b12;
     cursor: pointer;
 }
 
@@ -326,6 +346,7 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    margin-top: 30px;
 }
 
 .entry-form textarea {
@@ -333,20 +354,22 @@ body {
     border: none;
     background: transparent;
 
-    font-family: 'Cormorant Garamond', serif;
+    font-family:'Nothing You Could Do', cursive;
     font-size: 20px;
-    line-height: 1.8;
+    line-height: 1.4;
 
-    color: #2e1f14;
+    color: #1c355e;
+    text-shadow: 0 0 1px rgba(28,53,94,0.4);
     outline: none;
     resize: none;
-    caret-color: #2e1f14;
+    caret-color: #1c355e;
 
     overflow-y: auto;
 }
 
 .entry-form textarea::placeholder {
-    font-family: 'Homemade Apple', cursive;
+    color: #1c355e;
+    font-family:'Nothing You Could Do', cursive;
     opacity: 0.6;
 }
 
@@ -356,62 +379,24 @@ body {
 
 .entry::-webkit-scrollbar,
 .entry-form textarea::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 .entry::-webkit-scrollbar-track,
 .entry-form textarea::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.15);
+    background: rgba(0,0,0,0.25);
 }
 
 .entry::-webkit-scrollbar-thumb,
 .entry-form textarea::-webkit-scrollbar-thumb {
-    background: #8f7a5f;
+    background: #6f5a44;
     border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.25);
 }
 
 .entry::-webkit-scrollbar-thumb:hover,
 .entry-form textarea::-webkit-scrollbar-thumb:hover {
-    background: #7a684f;
-}
-
-.entry,
-.entry-form textarea {
-    scrollbar-width: thin;
-    scrollbar-color: #8f7a5f rgba(0,0,0,0.15);
-}
-
-/* ========================= */
-/* BUTTON                    */
-/* ========================= */
-
-.entry-form button {
-    align-self: center;
-    width: 220px;
-    margin-top: 25px;
-    padding: 12px 0;
-
-    font-family: 'Cormorant Garamond', serif;
-    letter-spacing: 1px;
-
-    background:
-        linear-gradient(#9b7a3d, #6f5425);
-
-    color: #f4e6c8;
-
-    border: 1px solid #5a421a;
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.5),
-        inset 0 1px 3px rgba(255,230,180,0.4);
-
-    transition: all 0.3s ease;
-}
-
-.entry-form button:hover {
-    transform: translateY(-3px);
-    background:
-        linear-gradient(#b68a2f, #7c5e1f);
+    background: #5a4624;
 }
 
 /* ========================= */
@@ -426,9 +411,10 @@ body {
 .close-link {
     text-decoration: none;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    color: #2e1f14;
-    opacity: 0.8;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3a1f14;
+    opacity: 1;
 }
 
 .close-link:hover {
