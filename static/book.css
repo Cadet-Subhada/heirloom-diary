@@ -17,7 +17,8 @@ body {
     background:
         radial-gradient(circle at center,
         #3d281a 0%,
-        #23150e 100%);
+        #23150e 100%),
+        url("https://www.transparenttextures.com/patterns/aged-paper.png");
 
     font-family: 'Cormorant Garamond', serif;
 }
@@ -37,10 +38,16 @@ body {
     border-radius: 6px;
     overflow: hidden;
 
+    transition: transform 0.4s ease;
+
     box-shadow:
-        0 40px 80px rgba(0,0,0,0.65);
+        0 50px 120px rgba(0,0,0,0.75),
+        0 0 40px rgba(255,215,150,0.08);
 }
 
+.book:hover {
+    transform: scale(1.01);
+}
 
 /* ========================= */
 /* SPINE                     */
@@ -174,7 +181,7 @@ body {
     line-height: 1.9;
     color: #2e1f14;
     margin: 0;
-
+    text-shadow: 0 0 1px rgba(0,0,0,0.2);
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
@@ -237,9 +244,24 @@ body {
 .page-btn {
     font-family: 'Cormorant Garamond', serif;
     text-decoration: none;
-    color: #2e1f14;
-    padding: 6px 12px;
-    transition: 0.3s ease;
+    padding: 8px 18px;
+
+    background: linear-gradient(#9b7a3d, #6f5425);
+    color: #f4e6c8;
+
+    border: 1px solid #5a421a;
+    border-radius: 6px;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.4),
+        inset 0 1px 2px rgba(255,230,180,0.3);
+
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(#b68a2f, #7c5e1f);
 }
 
 .page-btn:hover {
@@ -295,7 +317,6 @@ body {
     filter: sepia(90%) saturate(120%) brightness(60%);
     cursor: pointer;
 }
-
 
 /* ========================= */
 /* WRITE FORM                */
@@ -393,7 +414,6 @@ body {
         linear-gradient(#b68a2f, #7c5e1f);
 }
 
-
 /* ========================= */
 /* FOOTER                    */
 /* ========================= */
@@ -415,6 +435,45 @@ body {
     opacity: 1;
 }
 
+/* ========================= */
+/* PAGE TURN ANIMATION       */
+/* ========================= */
+
+.book {
+    perspective: 2000px;
+}
+
+.page-left {
+    animation: pageEnterLeft 0.8s ease;
+    transform-origin: right;
+}
+
+.page-right {
+    animation: pageEnterRight 0.8s ease;
+    transform-origin: left;
+}
+
+@keyframes pageEnterLeft {
+    0% {
+        transform: rotateY(6deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes pageEnterRight {
+    0% {
+        transform: rotateY(-6deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
 
 /* ========================= */
 /* RESPONSIVE                */
