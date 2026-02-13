@@ -180,14 +180,9 @@ body {
 /* ONLY ENTRIES HANDWRITTEN */
 
 .entry p {
-    font-family:'Nothing You Could Do', cursive;
     font-size: 17px;
     line-height: 1.9;
-    color: #1c355e;
     margin: 0;
-    text-shadow:
-        0 0 1px rgba(28,53,94,0.6),
-        0 0 2px rgba(28,53,94,0.3);
     opacity: 0.95;
     filter: contrast(0.98);
     word-wrap: break-word;
@@ -199,9 +194,7 @@ body {
 .signature {
     display: block;
     margin-top: 6px;
-    font-family:'Nothing You Could Do', cursive;
     font-size: 14px;
-    color: #1c355e;
     opacity: 0.85;
 }
 
@@ -226,17 +219,23 @@ body {
     right: 0;
 
     font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #5a1f1f;
+    opacity: 0.85;
 
     text-decoration: none;
-    color: #5a4328;
-    opacity: 0.7;
+    letter-spacing: 0.5px;
+
+    transition: all 0.2s ease;
 }
 
 .scratch-btn:hover {
+    color: #7a1f1f;
     opacity: 1;
+    text-shadow: 0 0 4px rgba(90, 31, 31, 0.3);
 }
-
 
 /* ========================= */
 /* PAGE NAVIGATION           */
@@ -339,6 +338,32 @@ body {
 }
 
 /* ========================= */
+/* HANDWRITING STYLES        */
+/* ========================= */
+
+.hw-1 { font-family: 'Dancing Script', cursive; }
+.hw-2 { font-family: 'Caveat', cursive; }
+.hw-3 { font-family: 'Shadows Into Light', cursive; }
+.hw-4 { font-family: 'Parisienne', cursive; }
+.hw-5 { font-family: 'Nothing You Could Do', cursive; }
+.hw-6 { font-family: 'Handlee', cursive; }
+.hw-7 { font-family: 'Patrick Hand', cursive; }
+.hw-8 { font-family: 'Reenie Beanie', cursive; }
+.hw-9 { font-family: 'Indie Flower', cursive; }
+.hw-10 { font-family: 'Gloria Hallelujah', cursive; }
+
+/* ========================= */
+/* INK STYLE (Reusable)      */
+/* ========================= */
+
+.ink {
+    color: #1c355e;
+    text-shadow:
+        0 0 1px rgba(28,53,94,0.6),
+        0 0 2px rgba(28,53,94,0.3);
+}
+
+/* ========================= */
 /* WRITE FORM                */
 /* ========================= */
 
@@ -353,24 +378,18 @@ body {
     flex-grow: 1;
     border: none;
     background: transparent;
-
-    font-family:'Nothing You Could Do', cursive;
     font-size: 20px;
     line-height: 1.4;
-
-    color: #1c355e;
-    text-shadow: 0 0 1px rgba(28,53,94,0.4);
     outline: none;
     resize: none;
     caret-color: #1c355e;
-
     overflow-y: auto;
 }
 
 .entry-form textarea::placeholder {
-    color: #1c355e;
-    font-family:'Nothing You Could Do', cursive;
-    opacity: 0.6;
+    color: inherit;
+    opacity: 0.5;
+    text-shadow: none;
 }
 
 /* ========================= */
@@ -430,12 +449,10 @@ body {
 }
 
 .page-left {
-    animation: pageEnterLeft 0.8s ease;
     transform-origin: right;
 }
 
 .page-right {
-    animation: pageEnterRight 0.8s ease;
     transform-origin: left;
 }
 

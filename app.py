@@ -4,6 +4,8 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import date, datetime, timedelta
 import os
+import random
+import hashlib
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'heirloomsecret'
@@ -25,6 +27,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(200))
+    handwriting_style = db.Column(db.Integer, default=1)
 
 
 class Entry(db.Model):
@@ -38,8 +41,18 @@ class Entry(db.Model):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    user = User.query.get(int(user_id))
 
+    if user and not user.handwriting_style:
+        style = int(
+            hashlib.sha256(user.username.encode()).hexdigest(),
+            16
+        ) % 10 + 1
+
+        user.handwriting_style = style
+        db.session.commit()
+
+    return user
 
 # =======================
 # Routes
@@ -84,11 +97,28 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+
+        existing = User.query.filter_by(
+            username=request.form['username']
+        ).first()
+
+        if existing:
+            return render_template(
+                'register.html',
+                error="Username already exists"
+            )
+
         hashed_password = generate_password_hash(request.form['password'])
+
+        style = int(
+            hashlib.sha256(request.form['username'].encode()).hexdigest(),
+            16
+        ) % 10 + 1
 
         new_user = User(
             username=request.form['username'],
-            password=hashed_password
+            password=hashed_password,
+            handwriting_style=style
         )
 
         db.session.add(new_user)
@@ -98,14 +128,12 @@ def register():
 
     return render_template('register.html')
 
-
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     session.pop('cover_unlocked', None)
     return redirect(url_for('cover'))
-
 
 # =======================
 # Diary Route
@@ -122,15 +150,17 @@ def diary():
     else:
         selected_date = date.today()
 
-    # Save new entry (always create new)
     if request.method == 'POST':
-        new_entry = Entry(
-            content=request.form['content'],
-            date=selected_date,
-            user_id=current_user.id
-        )
-        db.session.add(new_entry)
-        db.session.commit()
+        content = request.form['content'].strip()
+
+        if content:
+            new_entry = Entry(
+                content=content,
+                date=selected_date,
+                user_id=current_user.id
+            )
+            db.session.add(new_entry)
+            db.session.commit()
 
         return redirect(url_for('diary', date=selected_date))
 

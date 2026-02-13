@@ -3,11 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Caveat&family=Shadows+Into+Light&family=Parisienne&family=Nothing+You+Could+Do&family=Handlee&family=Patrick+Hand&family=Reenie+Beanie&family=Indie+Flower&family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='book.css') }}">
     <title>Heirloom Diary</title>
 </head>
@@ -26,19 +22,20 @@
         <div class="entry">
 
             {% for entry in entries %}
-                <div class="entry-block">
+                <div class="entry-block" id="entry-{{ entry.id }}">
 
-                    <p class="{% if entry.scratched %}scratched{% endif %}">
+                    <p class="hw-{{ entry.user.handwriting_style }} ink {% if entry.scratched %}scratched{% endif %}">
                         {{ entry.content | replace('\n', '<br>') | safe }}
                     </p>
 
-                    <small class="signature">
+                    <small class="signature hw-{{ entry.user.handwriting_style }} ink">
                         — {{ entry.user.username }}
                     </small>
 
                     {% if not entry.scratched %}
-                        <a href="{{ url_for('scratch', entry_id=entry.id) }}"
-                           class="scratch-btn">
+                        <a href="#"
+                        class="scratch-btn"
+                        data-id="{{ entry.id }}">
                             Scratch
                         </a>
                     {% endif %}
@@ -52,13 +49,13 @@
         <div class="page-nav">
 
             {% if previous_date %}
-                <a href="{{ url_for('diary', date=previous_date) }}" class="page-btn">
+                <a href="{{ url_for('diary', date=previous_date) }}" class="page-btn animate-page">
                     Previous Page
                 </a>
             {% endif %}
 
             {% if next_date %}
-                <a href="{{ url_for('diary', date=next_date) }}" class="page-btn">
+                <a href="{{ url_for('diary', date=next_date) }}" class="page-btn animate-page">
                     Next Page
                 </a>
             {% endif %}
@@ -91,7 +88,12 @@
         </div>
 
         <form method="POST" class="entry-form" novalidate>
-            <textarea name="content" placeholder="Thoughts for the day..."></textarea>
+
+            <textarea 
+                name="content"
+                class="hw-{{ current_user.handwriting_style }} ink"
+                placeholder="Thoughts for the day..."></textarea>
+
             <button type="submit">Commit to the Archive</button>
         </form>
 
@@ -102,6 +104,72 @@
     </div>
 
 </div>
+
+<script>
+document.querySelectorAll('.animate-page').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelector('.page-left').style.animation = 'pageEnterLeft 0.8s ease';
+        document.querySelector('.page-right').style.animation = 'pageEnterRight 0.8s ease';
+    });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const entryContainer = document.querySelector(".entry");
+    if (!entryContainer) return;
+
+    if (window.location.hash) {
+
+        const target = document.querySelector(window.location.hash);
+
+        if (target) {
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+
+    } else {
+
+        entryContainer.scrollTo({
+            top: entryContainer.scrollHeight,
+            behavior: "smooth"
+        });
+
+    }
+
+});
+</script>
+
+<script>
+document.querySelectorAll('.scratch-btn').forEach(btn => {
+
+    btn.addEventListener('click', function(e) {
+
+        e.preventDefault();
+
+        const entryId = this.dataset.id;
+
+        fetch(`/scratch/${entryId}`)
+            .then(() => {
+
+                const entryBlock = this.closest('.entry-block');
+                const text = entryBlock.querySelector('p');
+
+                text.classList.add('scratched');
+
+                this.remove();
+
+            });
+
+    });
+
+});
+</script>
 
 </body>
 </html>
