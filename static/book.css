@@ -99,25 +99,25 @@ body {
 .page::before {
     content: "";
     position: absolute;
-    top: 25px;
-    left: 25px;
-    right: 25px;
-    bottom: 25px;
+    top: 28px;
+    left: 28px;
+    right: 28px;
+    bottom: 28px;
 
-    border: 1px solid rgba(60,40,20,0.25);
+    border: 1px solid rgba(60,40,20,0.35);
     pointer-events: none;
 }
 
 .page::after {
     content: "";
     position: absolute;
-    inset: 0;
-    pointer-events: none;
+    top: 36px;
+    left: 36px;
+    right: 36px;
+    bottom: 36px;
 
-    background:
-        radial-gradient(circle at center,
-        transparent 65%,
-        rgba(0,0,0,0.15) 100%);
+    border: 1px solid rgba(60,40,20,0.15);
+    pointer-events: none;
 }
 
 .page-left {
