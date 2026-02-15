@@ -8,7 +8,7 @@ import random
 import hashlib
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'heirloomsecret'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
 db = SQLAlchemy(app)
@@ -16,8 +16,7 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-FAMILY_CODE = "2026"
-
+FAMILY_CODE_HASH = os.environ.get("FAMILY_CODE_HASH")
 
 # =======================
 # Models
@@ -67,17 +66,15 @@ def home():
 def cover():
     return render_template('cover.html')
 
-
 @app.route('/unlock', methods=['POST'])
 def unlock():
     entered_code = request.form.get('code')
 
-    if entered_code == FAMILY_CODE:
+    if FAMILY_CODE_HASH and check_password_hash(FAMILY_CODE_HASH, entered_code):
         session['cover_unlocked'] = True
         return redirect(url_for('login'))
     else:
         return redirect(url_for('cover'))
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
