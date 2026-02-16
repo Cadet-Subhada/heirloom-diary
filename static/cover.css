@@ -241,21 +241,15 @@
 
 
     .strap {
-        width: 72%;
-        height: 60px;
+        width: 65%;
+        height: 65px;
         right: 0;
         border-radius: 10px 0 0 10px;
 
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding-left: 40px;
-    }
-
-    .strap::before,
-    .strap::after {
-        left: 120px;
-        right: 20px;
+        padding-left: 30px;
     }
 
     .strap-lock {
