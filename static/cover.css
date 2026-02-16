@@ -242,14 +242,14 @@
 
     .strap {
         width: 65%;
-        height: 65px;
+        height: 68px;
         right: 0;
         border-radius: 10px 0 0 10px;
 
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding-left: 30px;
+        padding-left: 20px;
     }
 
     .strap-lock {
