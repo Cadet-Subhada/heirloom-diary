@@ -7,8 +7,6 @@ import os
 import random
 import hashlib
 
-print("DATABASE_URL =", os.environ.get("DATABASE_URL"))
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 

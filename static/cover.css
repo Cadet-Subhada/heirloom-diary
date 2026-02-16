@@ -1,6 +1,7 @@
 .cover-body {
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
     background: radial-gradient(circle at center, #1a0f0a 0%, #0d0704 100%);
     display: flex;
     justify-content: center;
@@ -10,7 +11,7 @@
 
 .cover {
     width: 520px;
-    height: 620px;   /* wider feel */
+    height: 620px;
     position: relative;
     border-radius: 16px;
     overflow: hidden;
@@ -216,9 +217,42 @@
 }
 
 @media (max-width: 600px) {
+
     .cover {
-        width: 90%;
-        height: auto;
+        width: 100%;
+        max-width: 420px;
         aspect-ratio: 520 / 620;
+        height: auto;
+        padding-top: 60px;
     }
+
+    .cover h1 {
+        font-size: 32px;
+        letter-spacing: 2px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .established {
+        font-size: 16px;
+        letter-spacing: 4px;
+        margin-bottom: 50px;
+    }
+
+    .strap {
+        width: 85%;
+        height: 80px;
+        padding-left: 20px;
+    }
+
+    .strap-lock {
+        padding: 14px 20px;
+    }
+
+    .digit-display span {
+        width: 22px;
+        height: 30px;
+        font-size: 16px;
+    }
+
 }
