@@ -241,34 +241,38 @@
 
 
     .strap {
-        width: 85%;
-        height: 50px;
-        padding-left: 40px;
+        width: 72%;
+        height: 60px;
+        right: 0;
         border-radius: 10px 0 0 10px;
 
         display: flex;
         align-items: center;
-        justify-content: center;
-        padding-left: 0;
+        justify-content: flex-start;
+        padding-left: 40px;
+    }
+
+    .strap::before,
+    .strap::after {
+        left: 120px;
+        right: 20px;
     }
 
     .strap-lock {
-        padding: 6px 12px;
-        border-radius: 6px;
+        padding: 8px 14px;
     }
 
     .metal-lock {
-        padding: 3px 6px;
+        padding: 4px 8px;
     }
 
     .digit-display {
-        padding: 4px 6px;
-        gap: 3px;
+        padding: 4px 8px;
     }
 
     .digit-display span {
-        width: 16px;
-        height: 20px; 
-        font-size: 12px;
+        width: 18px;
+        height: 22px; 
+        font-size: 13px;
     }
 }
