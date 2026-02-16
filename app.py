@@ -13,11 +13,18 @@ app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 database_url = os.environ.get("DATABASE_URL")
 
 if database_url and database_url.startswith("postgres://"):
-    database_url = database_url.replace("postgres://", "postgresql+psycopg2://", 1)
+    database_url = database_url.replace(
+        "postgres://",
+        "postgresql+psycopg2://",
+        1
+    )
 
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "connect_args": {"sslmode": "require"}
+}
 
 db = SQLAlchemy(app)
 
