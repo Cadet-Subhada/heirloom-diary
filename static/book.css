@@ -489,17 +489,16 @@ body {
     }
 
     .book {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
         width: 100%;
+        max-width: 100%;
         height: auto;
     }
 
     .page {
         width: 100%;
         padding: 40px;
-    }
-
-    .book::before {
-        display: none;
     }
 }
